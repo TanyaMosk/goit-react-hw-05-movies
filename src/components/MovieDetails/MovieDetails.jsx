@@ -37,16 +37,16 @@ export const MovieDetails = () => {
             <img src={`https://image.tmdb.org/t/p/w342/${poster_path}`} alt={title}/>
         </div>
         <div>
-            <p>{title}  {movie.release_date}</p>            
-            <p>User vote</p>
+            <h2>{title}  {movie.release_date}</h2>            
+            <h3>User vote</h3>
             <span>{movie.vote_average}</span>
-            <p>Overview</p>
+            <h3>Overview</h3>
             <span>{movie.overview }</span>
-            <p>
+            <h3>Genres</h3>
               {movie.genres && movie.genres.map(genre => (
             <span key={genre.id}> {genre.name}</span>
             ))}
-            </p>
+            
         </div>
         <ul>        
           <li>

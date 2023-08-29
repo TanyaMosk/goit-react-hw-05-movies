@@ -4,10 +4,9 @@ import { fetchMovieCastById } from "services/api";
 
 export const Cast = () => {
     const { movieId } = useParams();
-    const [casts, setCasts] = useState([]);
-    
+    const [casts, setCasts] = useState([]);    
 
-      useEffect(() => {
+    useEffect(() => {
     async function fetchMovieCast(movieId) {
       try {
         const response = await fetchMovieCastById(movieId);
@@ -28,7 +27,10 @@ export const Cast = () => {
             <ul>
             {casts.map(({ id,name, profile_path}) => (
                 <li key={id}>
-                <img src={`https://image.tmdb.org/t/p/w92/${profile_path}`} alt={name}/> 
+                <img src = {profile_path ? `https://image.tmdb.org/t/p/w500/${profile_path}` : 
+                'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png'}
+                  // src={`https://image.tmdb.org/t/p/w92/${profile_path}`} 
+                  alt={name} width={98} height={132}  /> 
                 <p>{name}</p>
             </li>
             ))}      

@@ -17,16 +17,14 @@ const Home = () => {
             }
         }
         getTrending();
-    }, []); 
-  
-     
+    }, []);      
     
 
     return (
         <ul>
             {trendMovies.map((movie) => (
                 <li key={movie.id}>
-                    <Link to={`${movie.id}`} id={movie.id}>{movie.original_title || movie.original_name} </Link>
+                    <Link to={`/movie/${movie.id}`} id={movie.id} >{movie.original_title || movie.original_name} </Link>
                 </li>
                  
             ))}

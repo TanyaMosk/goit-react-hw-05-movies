@@ -9,15 +9,10 @@ import { Reviews } from "./Reviews/Reviews";
 export const App = () => {
 
   return (
-    <div>
-      
+    <div>      
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home/>}></Route>
-          <Route path="/:movieId" element={<MovieDetails />}>
-             <Route path="/:movieId/cast" element={<Cast/>}></Route>
-             <Route path="/:movieId/reviews" element={<Reviews/>}></Route> */}
-          </Route>
+          <Route index element={<Home/>}></Route>          
           <Route path="/movie" element={<Movies/>}></Route>
           <Route path="/movie/:movieId" element={<MovieDetails />}>
              <Route path="/movie/:movieId/cast" element={<Cast/>}></Route>
@@ -28,3 +23,7 @@ export const App = () => {
     </div>
   );
 };
+
+
+
+
