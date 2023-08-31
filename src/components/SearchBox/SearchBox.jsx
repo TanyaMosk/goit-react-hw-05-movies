@@ -1,14 +1,15 @@
+import { SearchBoxButton, SearchBoxForm, SearchBoxInput } from "./SearchBox.styled"
 
 export const SearchBox = ({onSubmit}) => {
     
     return (
-        <form onSubmit={onSubmit}>
-          <button type="submit">Search</button>
-          <input
+        <SearchBoxForm onSubmit={onSubmit}>
+          <SearchBoxButton type="submit">Search</SearchBoxButton>
+          <SearchBoxInput
             name="query"           
             type="text"                    
             placeholder="Search movies"/>
-        </form>
+        </SearchBoxForm>
 
     )
 }

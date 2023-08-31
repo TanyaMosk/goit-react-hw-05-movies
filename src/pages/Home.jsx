@@ -1,5 +1,5 @@
+import { TrendingMovies } from "components/TrendingMovies/TrendingMovies";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { fetchTrending } from "services/api";
 
 
@@ -19,17 +19,9 @@ const Home = () => {
     }, []);      
 
     return (
-        <main>
-          <div>
-            <ul>
-            {trendMovies.map((movie) => (
-              <li key={movie.id}>
-                <Link to={`/movie/${movie.id}`} id={movie.id} >{movie.original_title || movie.original_name} </Link>
-              </li>                 
-            ))}
-            </ul>
-          </div>
-       </main>
+      <main>        
+        <TrendingMovies trends={trendMovies} />          
+      </main>
     )
 }
 

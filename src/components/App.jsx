@@ -2,13 +2,14 @@ import { Route, Routes } from "react-router-dom";
 import Home from "pages/Home"
 import Movies from "pages/Movies";
 import { MovieDetails } from "../components/MovieDetails/MovieDetails";
-import { SharedLayout } from "./SharedLayout";
+import { SharedLayout } from "./SharedLayout/SharedLayout";
 import { Cast } from "./Cast/Cast";
 import { Reviews } from "./Reviews/Reviews";
+import { GlobalStyle } from "./GlobalStyle";
 
 export const App = () => {
   return (
-    <div>      
+    <>      
       <Routes>
         <Route path="/" element={<SharedLayout/>}>
           <Route index element={<Home/>}/>          
@@ -19,7 +20,8 @@ export const App = () => {
           </Route>         
         </Route>        
       </Routes>
-    </div>
+      <GlobalStyle/>
+    </>
   );
 };
 
