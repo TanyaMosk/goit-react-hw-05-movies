@@ -7,8 +7,8 @@ export const MovieDetails = () => {
   const [movie, setMovie] = useState([]);
   const [noResults, setNoResults] = useState();  
   const location = useLocation(); 
-  const backLinkLocationRef = useRef(location.state.from && "/movie");
-
+  const backLinkLocationRef = useRef(location.state?.from ?? "/movie");
+  
   useEffect(() => {
   async function fetchMovieId(movieId) {
     try {
@@ -24,15 +24,14 @@ export const MovieDetails = () => {
     };
     
   fetchMovieId(movieId);
-  }, [movieId]);
-    
-  // console.log(movie)
+  }, [movieId]);    
+ 
   const { title, poster_path,release_date,vote_average,overview,genres} = movie;
 
   return (
     <div>
-        <div>
-            <Link to={backLinkLocationRef.current}>Back</Link>
+      <div>        
+          {backLinkLocationRef.current !== '/movie' ? <Link to={backLinkLocationRef.current}>Back</Link>: <Link to={'/'}>BACK</Link>}
         </div>
         <h1>Movie details</h1>
         {noResults ? <h2>Sorry, we have no information about this movie</h2> : <>

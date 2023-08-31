@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { fetchTrending } from "services/api";
 
 
 const Home = () => {
-    const [trendMovies, setTrendMovies] = useState([]);   
-    const location = useLocation();
+    const [trendMovies, setTrendMovies] = useState([]);       
     
     useEffect(() => {
        async function getTrending() {          
             try {               
-                const response = await fetchTrending();       
-                // console.log(response.results);
+                const response = await fetchTrending();                 
                 setTrendMovies([...response.results]);                
             } catch (error) {
                 console.log(error);
@@ -19,17 +17,19 @@ const Home = () => {
         }
         getTrending();
     }, []);      
-    
 
     return (
-        <ul>
+        <main>
+          <div>
+            <ul>
             {trendMovies.map((movie) => (
-                <li key={movie.id}>
-                    <Link to={`/movie/${movie.id}`} id={movie.id} state={{from:location}} >{movie.original_title || movie.original_name} </Link>
-                </li>
-                 
+              <li key={movie.id}>
+                <Link to={`/movie/${movie.id}`} id={movie.id} >{movie.original_title || movie.original_name} </Link>
+              </li>                 
             ))}
-        </ul>
+            </ul>
+          </div>
+       </main>
     )
 }
 

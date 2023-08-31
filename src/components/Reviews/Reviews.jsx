@@ -35,8 +35,7 @@ export const Reviews = () => {
                         <p>{content}</p>
                     </li>
                 ))}
-            </ul>}
-            
+            </ul>}            
         </section>
     )
 }

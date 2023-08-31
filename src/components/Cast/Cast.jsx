@@ -10,31 +10,26 @@ export const Cast = () => {
     async function fetchMovieCast(movieId) {
       try {
         const response = await fetchMovieCastById(movieId);
-          setCasts(response.cast);
-        //   console.log(response);
+        setCasts(response.cast);     
       } catch (error) {
         console.log(error);
      };
     };
        fetchMovieCast(movieId);
       }, [movieId]);
-    console.log(casts);
     
-    // const { name } = cast;
-    // console.log(name)
     return (
-        <section>    
-            <ul>
-            {casts.map(({ id,name, profile_path}) => (
-                <li key={id}>
-                <img src = {profile_path ? `https://image.tmdb.org/t/p/w500/${profile_path}` : 
-                'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png'}
-                  // src={`https://image.tmdb.org/t/p/w92/${profile_path}`} 
-                  alt={name} width={98} height={132}  /> 
-                <p>{name}</p>
+      <section>    
+          <ul>
+          {casts.map(({ id,name, profile_path}) => (
+            <li key={id}>
+            <img src = {profile_path ? `https://image.tmdb.org/t/p/w500/${profile_path}` : 
+              'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png'}                 
+                alt={name} width={98} height={132}  /> 
+            <p>{name}</p>
             </li>
             ))}      
         </ul>        
-    </section>
+      </section>
     )
 }
