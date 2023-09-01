@@ -5,4 +5,6 @@ export const takeYear = (date) => {
     return result;
 }
 
-export const fixedNumber = (number) => number.toFixed(1);
+
+    
+   

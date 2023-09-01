@@ -11,21 +11,27 @@ import {
   MovieDetailsDescr,
   MovieDetailsGenres
 } from "./MovieDetails.styled";
-import { takeYear,fixedNumber } from "helpers/dataFormat";
+import { takeYear } from "helpers/dateFormat";
+import {fixedNumber} from "helpers/fixedNumber";
+import { Loader } from "components/Loader/Loader";
 
 
 export const MovieDetails = () => {    
   const {movieId} = useParams();    
   const [movie, setMovie] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [noResults, setNoResults] = useState();  
   const location = useLocation(); 
   const backLinkLocationRef = useRef(location.state?.from ?? "/movie");
   
-  useEffect(() => {
-  async function fetchMovieId(movieId) {
+  useEffect(() => {    
+    async function fetchMovieId(movieId) {
+      setLoading(true);
+      
     try {
       const response = await fetchMovieById(movieId);        
-      setMovie(response);     
+      setMovie(response);  
+      setLoading(false);      
     } catch (error) {        
       if (error) {
       setNoResults(true);
@@ -45,6 +51,7 @@ export const MovieDetails = () => {
           {backLinkLocationRef.current !== '/movie' ? <Link to={backLinkLocationRef.current}> ←Go back</Link>: <Link to={'/'}>←Go back</Link>}
         </div>        
         {noResults ? <MovieDetailsTextError>Sorry, we have no information about this movie!</MovieDetailsTextError> : <>
+        {loading && <Loader/>}
         <MovieDetailsWrapper>
           <div>
             <MovieDetailsImage src={poster_path ? `https://image.tmdb.org/t/p/w342/${poster_path}`:'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'} alt={title}/>
@@ -52,8 +59,8 @@ export const MovieDetails = () => {
           <MovieDetailsDescr>
             {release_date ? <h2>{title}  ({takeYear(release_date)})</h2>
               : <h2>{title}</h2>}            
-            <h3>User vote</h3>
-            {vote_average ? <span>{fixedNumber(vote_average)}</span> : <span>{vote_average}</span> }
+            {/* <h3>User Score</h3> */}
+            {vote_average ? <p>User Score: {fixedNumber(vote_average)} %</p> : <p>User Score: {vote_average}</p> }
             {/* <span>{fixedNumber(vote_average)}</span> */}
             <h3>Overview</h3>
             {overview ? <span>{overview}</span> : <p>Sorry, we have no information.</p>}

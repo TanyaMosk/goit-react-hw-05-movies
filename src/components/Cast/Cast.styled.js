@@ -4,11 +4,12 @@ export const CastWrapper = styled.section`
 padding-top: 20px;
 `;
 
-export const CastList = styled.ul`
+export const CastList = styled.ul` 
+
 `;
 
 export const CastListItem = styled.li`
-margin-bottom: 30px;
+margin-bottom: 30px; 
 `;
 
 export const Image = styled.img`
