@@ -13,10 +13,11 @@ export const Reviews = () => {
       try {
         const response = await fetchMovieReviewsById(movieId);
           
-          if (response.total_results === 0) {
-              setNoResults(true);
-          };
-          setReviews(response.results);
+        if (response.total_results === 0) {
+              setNoResults(true);               
+        };
+                
+        setReviews(response.results);
         
       } catch (error) {
         console.log(error);
@@ -28,7 +29,7 @@ export const Reviews = () => {
 
     return (
         <section>
-           {noResults ? <h2>We don't have any reviews for this movie</h2> : <ul>
+           {noResults ? <h2>Sorry. We don't have any reviews for this movie.</h2> : <ul>
                 {reviews.map(({id,author,content}) => (
                     <li key={id}>
                         <h3>Author: {author}</h3>

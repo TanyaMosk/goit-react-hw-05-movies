@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 export const WrapperList = styled.div`
-padding: 20px 15px;
+padding: 20px 40px;
 `;
 
 export const List = styled.ul`

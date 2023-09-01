@@ -1,12 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import { SearchMoviesList } from "./SearchMovies.styled";
+import { SearchMoviesList, SearchMoviesWrapper } from "./SearchMovies.styled";
 // import { useRef} from "react";
 
 export const SearchMovies = ({ movies }) => {
     const location = useLocation();
  
     return (
-    <div>
+    <SearchMoviesWrapper>
         <SearchMoviesList>
         {movies.map(({id, title}) => (
           <li key={id}>
@@ -14,6 +14,6 @@ export const SearchMovies = ({ movies }) => {
           </li>
           ))}
         </SearchMoviesList>
-    </div>
+    </SearchMoviesWrapper>
     )
 }

@@ -1,35 +1,45 @@
 import { useParams } from "react-router-dom"
 import { useState, useEffect} from "react";
 import { fetchMovieCastById } from "services/api";
+import { CastWrapper, CastList, CastListItem, Image } from "./Cast.styled";
 
 export const Cast = () => {
-    const { movieId } = useParams();
-    const [casts, setCasts] = useState([]);    
+  const { movieId } = useParams();
+  const [casts, setCasts] = useState([]); 
+  const [noResults, setNoResults] = useState(false);
 
     useEffect(() => {
     async function fetchMovieCast(movieId) {
       try {
         const response = await fetchMovieCastById(movieId);
-        setCasts(response.cast);     
+        if (response.cast.length === 0) {
+          setNoResults(true);                   
+        };     
+        
+        setCasts(response.cast);          
+        
       } catch (error) {
         console.log(error);
      };
     };
        fetchMovieCast(movieId);
-      }, [movieId]);
+    }, [movieId]);  
     
     return (
-      <section>    
-          <ul>
-          {casts.map(({ id,name, profile_path}) => (
-            <li key={id}>
-            <img src = {profile_path ? `https://image.tmdb.org/t/p/w500/${profile_path}` : 
+      <CastWrapper>          
+        {noResults ? <h2>Sorry. We don't have cast information.</h2> : <CastList>
+            {casts.map(({ id,name, profile_path,character}) => (
+            <CastListItem key={id}>
+            <Image src = {profile_path ? `https://image.tmdb.org/t/p/w500/${profile_path}` : 
               'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png'}                 
-                alt={name} width={98} height={132}  /> 
-            <p>{name}</p>
-            </li>
+                alt={name}/> 
+              <p>{name}</p>
+              <p>Character:
+                <span> {character}</span>
+              </p>              
+            </CastListItem>
             ))}      
-        </ul>        
-      </section>
+        </CastList> }                
+      </CastWrapper>
     )
 }

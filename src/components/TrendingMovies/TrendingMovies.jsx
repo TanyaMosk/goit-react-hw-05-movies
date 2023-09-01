@@ -9,7 +9,7 @@ export const TrendingMovies = ({ trends }) => {
         <List>
         {trends.map((movie) => (
           <li key={movie.id}>
-            <Link to={`/movie/${movie.id}`} id={movie.id} >{movie.original_title || movie.original_name} </Link>
+            <Link to={`/movie/${movie.id}`} id={movie.id} >{movie.title || movie.name} </Link>
           </li>                 
         ))}
         </List>
