@@ -3,12 +3,12 @@ import { SearchBoxButton, SearchBoxForm, SearchBoxInput } from "./SearchBox.styl
 export const SearchBox = ({onSubmit}) => {
     
     return (
-        <SearchBoxForm onSubmit={onSubmit}>
-          <SearchBoxButton type="submit">Search</SearchBoxButton>
+        <SearchBoxForm onSubmit={onSubmit}>          
           <SearchBoxInput
             name="query"           
             type="text"                    
-            placeholder="Search movies"/>
+            placeholder="Search movies" />
+        <SearchBoxButton type="submit">Search</SearchBoxButton>
         </SearchBoxForm>
 
     )

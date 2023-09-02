@@ -1,16 +1,19 @@
+import { useEffect, useState } from "react"
+import { useSearchParams } from "react-router-dom";
 import { Loader } from "components/Loader/Loader";
 import { SearchBox } from "components/SearchBox/SearchBox";
 import { SearchMovies } from "components/SearchMovies/SearchMovies";
-import { useEffect, useState } from "react"
-import { useSearchParams } from "react-router-dom";
 import { fetchSearchMovieByName } from "services/api";
+import { Pagination } from "components/Pagination/Pagination";
 
 const Movies = () => {       
     const [searchMovie, setSearchMovie] = useState([]);      
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);  
+    const [pages, setPages] = useState(0);
     const [searchParams, setSearchParams] = useSearchParams();
-    const query = searchParams.get("query") ?? "";         
-    
+    const query = searchParams.get("query") ?? "";  
+    const page = searchParams.get("page") ?? "";     
+
     useEffect(() => {
         if (query === '') return;        
        
@@ -21,38 +24,46 @@ const Movies = () => {
                 return;
             }             
             try {
-                const response = await fetchSearchMovieByName(query);
+                const response = await fetchSearchMovieByName(query, page);
                 setSearchMovie(response.results);               
                 setLoading(false);
-                console.log(response.results);
+                setPages(response.total_pages);              
+               
             } catch (error) {
                 console.log(error);
             }
         }
         getMovie()
-    },[query]);
+    }, [query, page]);    
 
     const handleSubmit = evt => {
-    evt.preventDefault();      
-    const queryMovie = evt.target.elements.query.value.trim();
+        evt.preventDefault();
+        const queryMovie = evt.target.elements.query.value.trim();   
         
         if (queryMovie === '') {
-           setSearchParams({});   
-           setSearchMovie([]); 
-            return;
+            setSearchParams({});
+            setSearchMovie([]);
+            setPages(0);
+           
         };
         if (queryMovie !== '') {
-           setSearchParams({query: queryMovie});        
-           evt.target.reset();
-            return;
-        };   
-    }        
+            setSearchParams({ query: queryMovie, page: '1' });
+            setPages(0)
+            evt.target.reset();           
+        };
+    };     
+   
 
+    const handlePageChange = (selectedPage) => {
+        setSearchParams({ query, page: selectedPage.selected + 1 });        
+  };
+   
     return (
         <main>
             <SearchBox onSubmit={handleSubmit} />
             {loading && <Loader/>}
-            <SearchMovies movies={searchMovie} />            
+            <SearchMovies movies={searchMovie} /> 
+            {pages !== 0 && <Pagination pages={pages} pageChange={handlePageChange} /> }           
         </main>
     )
 }

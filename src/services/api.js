@@ -9,7 +9,7 @@ const defaultParams = {
 // список трендів на сьогодні
 export async function fetchTrending(){
     const response = await axios.get('/trending/all/day', { params: { ...defaultParams } });
-//     console.log(response.data);
+    // console.log(response.data);
     return response.data;
 }
 // Запит повної інформації про фільм
@@ -30,12 +30,13 @@ export async function fetchMovieReviewsById(id) {
         // console.log(response.data);
         return response.data;    
 };
-
-export async function fetchSearchMovieByName(query) {
+// Пошук фільмів за назвою фільмо
+export async function fetchSearchMovieByName(query,page) {
     const response = await axios.get(`/search/movie`, {
             params: {
             ...defaultParams,   
-            query: query,             
+            query: query, 
+            page: page,
         }
         });
         // console.log(response.data);    
