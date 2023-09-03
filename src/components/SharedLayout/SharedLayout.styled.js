@@ -49,3 +49,7 @@ background: -webkit-linear-gradient(280deg, rgb(115, 139, 252) 27%, rgb(241, 236
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `;
+export const SuspenseWrapper = styled.div`
+margin: 50px;
+
+`;

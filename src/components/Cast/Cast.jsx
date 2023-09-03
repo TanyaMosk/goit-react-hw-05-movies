@@ -2,18 +2,18 @@ import { useParams } from "react-router-dom"
 import { useState, useEffect} from "react";
 import { fetchMovieCastById } from "services/api";
 import { CastWrapper, CastList, CastListItem, Image } from "./Cast.styled";
-import { Loader } from "components/Loader/Loader";
+// import { Loader } from "components/Loader/Loader";
 
-export const Cast = () => {
+export default function Cast () {
   const { movieId } = useParams();
   const [casts, setCasts] = useState([]); 
   const [noResults, setNoResults] = useState(false);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   useEffect(() => {    
     async function fetchMovieCast(movieId) {
 
-      setLoading(true);
+      // setLoading(true);
       try {
         const response = await fetchMovieCastById(movieId);
         if (response.cast.length === 0) {
@@ -21,7 +21,7 @@ export const Cast = () => {
         };     
         
         setCasts(response.cast);          
-        setLoading(false);
+        // setLoading(false);
       } catch (error) {
         console.log(error);
      };
@@ -31,7 +31,7 @@ export const Cast = () => {
     
     return (
       <CastWrapper>   
-        {loading && <Loader/>}
+        {/* {loading && <Loader/>} */}
         {noResults ? <h2>Sorry. We don't have cast information.</h2> : <CastList>
             {casts.map(({ id,name, profile_path,character}) => (
             <CastListItem key={id}>
@@ -48,3 +48,4 @@ export const Cast = () => {
       </CastWrapper>
     )
 }
+

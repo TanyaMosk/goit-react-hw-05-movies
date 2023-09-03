@@ -9,8 +9,6 @@ display: flex;
 gap: 30px;
 margin-top: 20px;
 padding-bottom: 10px;
-/* padding: 10px; */
-/* margin-bottom: 40px; */
 border-bottom: 1px solid black;
 `;
 
@@ -18,12 +16,7 @@ export const MovieDetailsTextError = styled.h2`
 text-align: center;
 `;
 
-export const MovieDetailsDescr = styled.div`
-/* width: 560px; */
-`;
-
 export const MovieDetailsImage = styled.img`
-/* width: 300px; */
 
 `;
 
@@ -39,5 +32,9 @@ export const CastReviewsList = styled.ul`
 display: flex;
 flex-direction: column;
 gap: 8px;
+`;
+export const SuspenseWrapper = styled.div`
+margin: 50px;
+
 `;
 

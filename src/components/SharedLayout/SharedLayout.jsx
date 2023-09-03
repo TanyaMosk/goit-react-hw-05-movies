@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { Header, WrapperNav,StyledLink, Icon, WrapperDiv, WrapperIcon, Text } from "./SharedLayout.styled";
+import { Suspense } from "react";
+import { Header, WrapperNav,StyledLink, Icon, WrapperDiv, WrapperIcon, Text, SuspenseWrapper } from "./SharedLayout.styled";
 
 export const SharedLayout = () => {
     return (
@@ -16,8 +17,10 @@ export const SharedLayout = () => {
             </WrapperIcon>            
         </WrapperNav>      
       </Header>
-      <hr />
-        <Outlet />
+        <hr />
+        <Suspense fallback={<SuspenseWrapper>Loading...</SuspenseWrapper>} >
+          <Outlet />
+        </Suspense>
    </>
     )
 }
