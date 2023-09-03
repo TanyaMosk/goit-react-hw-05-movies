@@ -10,6 +10,7 @@ const Movies = () => {
     const [searchMovie, setSearchMovie] = useState([]);      
     const [loading, setLoading] = useState(false);  
     const [pages, setPages] = useState(0);
+    const [activePage, setActivePage] = useState(1);
     const [searchParams, setSearchParams] = useSearchParams();
     const query = searchParams.get("query") ?? "";  
     const page = searchParams.get("page") ?? "";     
@@ -27,7 +28,8 @@ const Movies = () => {
                 const response = await fetchSearchMovieByName(query, page);
                 setSearchMovie(response.results);               
                 setLoading(false);
-                setPages(response.total_pages);              
+                setPages(response.total_pages);                 
+                setActivePage(Number(page) || 1);                
                
             } catch (error) {
                 console.log(error);
@@ -38,24 +40,22 @@ const Movies = () => {
 
     const handleSubmit = evt => {
         evt.preventDefault();
-        const queryMovie = evt.target.elements.query.value.trim();   
+        const queryMovie = evt.target.elements.query.value.trim();          
         
         if (queryMovie === '') {
             setSearchParams({});
             setSearchMovie([]);
-            setPages(0);
+            
            
         };
         if (queryMovie !== '') {
-            setSearchParams({ query: queryMovie, page: '1' });
-            setPages(0)
+            setSearchParams({ query: queryMovie, page: 1});            
             evt.target.reset();           
         };
     };     
-   
 
     const handlePageChange = (selectedPage) => {
-        setSearchParams({ query, page: selectedPage.selected + 1 });        
+        setSearchParams({ query, page: selectedPage.selected + 1});       
   };
    
     return (
@@ -63,12 +63,11 @@ const Movies = () => {
             <SearchBox onSubmit={handleSubmit} />
             {loading && <Loader/>}
             <SearchMovies movies={searchMovie} /> 
-            {pages !== 0 && <Pagination pages={pages} pageChange={handlePageChange} /> }           
+            {pages !== 0 && <Pagination pages={pages} pageChange={handlePageChange} activePage={activePage}
+            />}           
         </main>
     )
 }
 
 export default Movies
 
-
-  

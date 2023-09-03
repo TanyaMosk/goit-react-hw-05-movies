@@ -22,22 +22,11 @@ export const StyledLink = styled(NavLink)`
   color: white ;
   text-decoration: none;
   padding: 10px 8px;  
-  border-radius: 10px; 
-  /* background-color:gainsboro;  */
-  /* background: linear-gradient(to top, #09203f 0%, #537895 100%); */
+  border-radius: 10px;   
   background: radial-gradient(circle at 1.8% 4.8%, rgb(17, 23, 58) 0%, rgb(58, 85, 148) 90%);
 
   &.active {
-    /* color: white ; */
-    /* background-color: blue; */
     background: linear-gradient(135.8deg, rgb(26, 26, 29) 27.1%, rgb(111, 34, 50) 77.5%);
-    /* background: radial-gradient(780px at 37.8% 100.3%,
-         rgb(19, 55, 115) 2.2%, 
-         rgb(32, 7, 80) 20.2%, 
-         rgb(27, 88, 111) 58.6%, 
-         rgb(115, 88, 44) 75%, 
-         rgb(99, 19, 90) 89.6%, 
-         rgb(12, 51, 76) 96.1%); */
   }
 `;
 

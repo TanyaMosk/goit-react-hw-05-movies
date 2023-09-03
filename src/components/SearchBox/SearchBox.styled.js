@@ -11,13 +11,7 @@ color: gainsboro;
 border-radius: 5px;
 
 &:hover{
-  background: radial-gradient(780px at 37.8% 100.3%,
-    rgb(19, 55, 115) 2.2%, 
-    rgb(32, 7, 80) 20.2%, 
-    rgb(27, 88, 111) 58.6%, 
-    rgb(115, 88, 44) 75%, 
-    rgb(99, 19, 90) 89.6%, 
-    rgb(12, 51, 76) 96.1%);
+  background: linear-gradient(135.8deg, rgb(26, 26, 29) 27.1%, rgb(111, 34, 50) 77.5%);
   color: #fff;  
 }
 `;

@@ -1,7 +1,8 @@
 // import ReactPaginate from 'react-paginate';
 import { StyledReactPaginate } from './Pagination.styled';
 
-export const Pagination = ({pages,pageChange}) => {
+export const Pagination = ({ pages, pageChange, activePage }) => {
+    const page = activePage - 1;
     return (         
           <StyledReactPaginate
           pageCount={pages}
@@ -10,7 +11,8 @@ export const Pagination = ({pages,pageChange}) => {
           onPageChange={pageChange}        
           activeClassName={"active"}  
           previousLabel={"<<"}
-          nextLabel={">>"}  
+          nextLabel={">>"} 
+          initialPage={page}  
         />                
     )
 }
