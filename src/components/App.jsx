@@ -1,7 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import { SharedLayout } from "./SharedLayout/SharedLayout";
-import { GlobalStyle } from "./GlobalStyle";
 import { lazy } from "react";
+import { GlobalStyle } from "./GlobalStyle";
+import SharedLayout from "./SharedLayout";
+
 
 const Home = lazy(() => import("../pages/Home"));
 const Movies = lazy(() => import("../pages/Movies"));

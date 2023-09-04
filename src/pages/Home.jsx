@@ -1,28 +1,28 @@
-import { TrendingMovies } from "components/TrendingMovies/TrendingMovies";
+import TrendingMovies from "components/TrendingMovies";
 import { useEffect, useState } from "react";
 import { fetchTrending } from "services/api";
 
 
 const Home = () => {
-    const [trendMovies, setTrendMovies] = useState([]);       
+  const [trendMovies, setTrendMovies] = useState([]);
     
-    useEffect(() => {
-       async function getTrending() {          
-            try {               
-                const response = await fetchTrending();                 
-                setTrendMovies([...response.results]);                
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        getTrending();
-    }, []);      
+  useEffect(() => {
+    async function getTrending() {
+      try {
+        const response = await fetchTrending();
+        setTrendMovies([...response.results]);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getTrending();
+  }, []);
 
-    return (
-      <main>        
-        <TrendingMovies trends={trendMovies} />          
-      </main>
-    )
-}
+  return (
+    <main>
+      <TrendingMovies trends={trendMovies} />
+    </main>
+  )
+};
 
 export default Home;

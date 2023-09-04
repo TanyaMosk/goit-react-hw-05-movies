@@ -40,4 +40,4 @@ export default function Reviews () {
             </ul>}            
         </section>
     )
-}
+};
