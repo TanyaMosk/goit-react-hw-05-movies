@@ -16,7 +16,7 @@ const MovieDetails = () => {
         setMovie(response);          
       } catch (error) {          
         setNoResults(true);             
-         console.error(error);      
+         console.log(error);      
       }
     };
     
