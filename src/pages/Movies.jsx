@@ -12,16 +12,19 @@ const Movies = () => {
     const [pages, setPages] = useState(0);   
     const [activePage, setActivePage] = useState(1);
     const [searchParams, setSearchParams] = useSearchParams();
-    const query = searchParams.get("query") ?? "";  
+    // const query = searchParams.get("query") ?? "";  
     const page = searchParams.get("page") ?? "";     
+    const [query, setQuery] = useState(searchParams.get("query") ?? '');
 
     useEffect(() => {
         if (query === '') return;        
        
         async function getMovie() {   
             
-            try {                
-                const response = await fetchSearchMovieByName(query, page);
+            try {         
+                const queryId = query.slice(query.indexOf('/') + 1);
+                
+                const response = await fetchSearchMovieByName(queryId, page);
                 setSearchMovie(response.results);                
                 setPages(response.total_pages);                   
                 setActivePage(Number(page) || 1);                
@@ -43,8 +46,10 @@ const Movies = () => {
             setPages(0);             
             toast.info('🦄 Please fill in the field!');
         };
-        if (queryMovie !== '') {             
+        if (queryMovie !== '') {           
+            const newQuery = (`${Date.now()}/${queryMovie}`)
             setSearchParams({ query: queryMovie, page: 1 });
+            setQuery(newQuery);            
             setSearchMovie([]); 
             evt.target.reset();            
         };
