@@ -1,4 +1,4 @@
-import { Link, Outlet, useLocation} from "react-router-dom";
+import { Link, Navigate, Outlet, useLocation} from "react-router-dom";
 import { useRef, Suspense } from "react";
 import { takeYear } from "helpers/dateFormat";
 import { fixedNumber } from "helpers/fixedNumber";
@@ -7,12 +7,10 @@ import {
   MovieDetailsSection,
   MovieDetailsWrapper,
   MovieDetailsImage,
-  CastReviewsList,
-  MovieDetailsTextError, 
+  CastReviewsList, 
   MovieDetailsGenres,
   SuspenseWrapper
 } from "./MovieDetailsId.styled";
-
 
 const MovieDetailsId = ({ movie, noResults }) => {
   const location = useLocation();
@@ -24,7 +22,7 @@ const MovieDetailsId = ({ movie, noResults }) => {
       <div>
         {backLinkLocationRef.current !== '/movie' ? <Link to={backLinkLocationRef.current}> ←Go back</Link> : <Link to={'/'}>←Go back</Link>}
       </div>
-      {noResults ? <MovieDetailsTextError>Sorry, we have no information about this movie!</MovieDetailsTextError> :
+      {noResults ? <Navigate to={"/"} /> :
         <>
           <MovieDetailsWrapper>
             <div>
@@ -35,7 +33,7 @@ const MovieDetailsId = ({ movie, noResults }) => {
                 : <h2>{title}</h2>}
               {vote_average ? <p>User Score: {fixedNumber(vote_average)} %</p> : <p>User Score: {vote_average}</p>}
               <h3>Overview</h3>
-              {overview ? <span>{overview}</span> : <p>Sorry, we have no information.</p>}
+              <span>{overview}</span> 
               <h3>Genres</h3>
               {genres && genres.map(({ id, name }) => (
                 <MovieDetailsGenres key={id}> {name}</MovieDetailsGenres>))}

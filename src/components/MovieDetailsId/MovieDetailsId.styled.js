@@ -12,10 +12,6 @@ padding-bottom: 10px;
 border-bottom: 1px solid black;
 `;
 
-export const MovieDetailsTextError = styled.h2`
-text-align: center;
-`;
-
 export const MovieDetailsImage = styled.img`
 
 `;

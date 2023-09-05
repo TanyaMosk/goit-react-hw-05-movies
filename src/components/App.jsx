@@ -20,7 +20,7 @@ export const App = () => {
           <Route path="/movie/:movieId" element={<MovieDetails />}>
              <Route path="/movie/:movieId/cast" element={<Cast/>}/>
              <Route path="/movie/:movieId/reviews" element={<Reviews/>}/>
-          </Route>         
+          </Route>            
         </Route>        
       </Routes>
       <GlobalStyle/>

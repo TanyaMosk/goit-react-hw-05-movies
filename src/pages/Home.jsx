@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { fetchTrending } from "services/api";
 
 
+
 const Home = () => {
   const [trendMovies, setTrendMovies] = useState([]);
     
@@ -12,7 +13,7 @@ const Home = () => {
         const response = await fetchTrending();
         setTrendMovies([...response.results]);
       } catch (error) {
-        console.log(error);
+        console.log(error);          
       }
     }
     getTrending();
@@ -20,7 +21,7 @@ const Home = () => {
 
   return (
     <main>
-      <TrendingMovies trends={trendMovies} />
+      <TrendingMovies trends={trendMovies} />        
     </main>
   )
 };
