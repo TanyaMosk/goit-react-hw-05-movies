@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate} from "react-router-dom";
 import { lazy } from "react";
 import { GlobalStyle } from "./GlobalStyle";
 import SharedLayout from "./SharedLayout";
@@ -9,6 +9,8 @@ const Movies = lazy(() => import("../pages/Movies"));
 const MovieDetails = lazy(() => import("../pages/MovieDetails"));
 const Cast = lazy(() => import("../components/Cast/Cast"));
 const Reviews = lazy(() => import("../components/Reviews/Reviews"));
+// const NotFound = lazy(() => import('../components/NotFound'));
+
 
 export const App = () => {
   return (
@@ -20,7 +22,9 @@ export const App = () => {
           <Route path="/movie/:movieId" element={<MovieDetails />}>
              <Route path="/movie/:movieId/cast" element={<Cast/>}/>
              <Route path="/movie/:movieId/reviews" element={<Reviews/>}/>
-          </Route>            
+          </Route>           
+          <Route path="*" element={<Navigate to="/" />} />
+          {/* <Route path="*" element={<NotFound />} /> */}
         </Route>        
       </Routes>
       <GlobalStyle/>

@@ -13,10 +13,10 @@ const MovieDetails = () => {
       
       try {
         const response = await fetchMovieById(movieId);
-        setMovie(response);        
+        setMovie(response);          
       } catch (error) {          
         setNoResults(true);             
-        console.log(error);        
+         console.error(error);      
       }
     };
     
