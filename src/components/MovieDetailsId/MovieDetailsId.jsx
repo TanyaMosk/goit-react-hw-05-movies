@@ -1,4 +1,4 @@
-import { Link, Navigate,  Outlet, useLocation} from "react-router-dom";
+import { Link, Outlet, useLocation} from "react-router-dom";
 import { useRef, Suspense } from "react";
 import { takeYear } from "helpers/dateFormat";
 import { fixedNumber } from "helpers/fixedNumber";
@@ -12,7 +12,7 @@ import {
   SuspenseWrapper
 } from "./MovieDetailsId.styled";
 
-const MovieDetailsId = ({ movie, noResults }) => {
+const MovieDetailsId = ({ movie }) => {
   const location = useLocation();
   const backLinkLocationRef = useRef(location.state?.from ?? "/movie");  
 
@@ -22,7 +22,7 @@ const MovieDetailsId = ({ movie, noResults }) => {
       <div>
         {backLinkLocationRef.current !== '/movie' ? <Link to={backLinkLocationRef.current}> ←Go back</Link> : <Link to={'/'}>←Go back</Link>}
       </div>
-        {noResults ? <Navigate to={"/"} /> : null}
+        
         <>
           <MovieDetailsWrapper>
             <div>

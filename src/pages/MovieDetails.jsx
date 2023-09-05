@@ -1,5 +1,5 @@
 import { useState, useEffect} from "react";
-import { useParams, } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { fetchMovieById } from "services/api";
 import MovieDetailsId from "components/MovieDetailsId";
 
@@ -25,7 +25,8 @@ const MovieDetails = () => {
 
   return (
     <main>
-    <MovieDetailsId movie={movie} noResults={noResults} />            
+      {noResults ? <Navigate to={"/"} /> : 
+    <MovieDetailsId movie={movie} /> }           
     </main>
   )
 };
