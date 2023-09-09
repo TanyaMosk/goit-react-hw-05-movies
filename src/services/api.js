@@ -9,7 +9,7 @@ const defaultParams = {
 // список трендів на сьогодні
 export async function fetchTrending(){
     const response = await axios.get('/trending/all/day', { params: { ...defaultParams } });
-//     console.log(response.data);
+    // console.log(response.data);
     return response.data;
 }
 // Запит повної інформації про фільм

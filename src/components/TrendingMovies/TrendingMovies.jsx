@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { List, TrendTitle, WrapperList } from "./TrendingMovies.styled";
+
+import { List, TrendTitle, WrapperList, Image, MovieTitle, MovieLink, ListItem } from "./TrendingMovies.styled";
 
 const TrendingMovies = ({ trends }) => {
 
@@ -8,9 +8,12 @@ const TrendingMovies = ({ trends }) => {
       <TrendTitle>Trending today</TrendTitle>
       <List>
         {trends.map((movie) => (
-          <li key={movie.id}>
-            <Link to={`/movie/${movie.id}`} id={movie.id} >{movie.title || movie.name} </Link>
-          </li>
+          <ListItem key={movie.id}>
+            <MovieLink to={`/movie/${movie.id}`} id={movie.id} >
+              <Image src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`} alt={movie.title || movie.name} />
+              <MovieTitle>{movie.title || movie.name} </MovieTitle>
+              </MovieLink>
+          </ListItem>
         ))}
       </List>
     </WrapperList>
