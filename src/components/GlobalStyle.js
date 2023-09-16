@@ -25,6 +25,7 @@ code {
 ul{
   margin: 0;
   padding: 0;
+  list-style: none;
 }
  img {
   display: block;
@@ -36,6 +37,6 @@ hr{
   margin: 0; 
   height: 10px;
   border: 0;
-  box-shadow: 0 10px 10px -10px #333 inset;
+  box-shadow: 0 10px 10px -10px #333 inset;  
 }
 `;

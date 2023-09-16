@@ -17,3 +17,15 @@ width: 120px;
 height: 160px;
 border-radius: 10px;
 `;
+
+export const CastTitle = styled.h2`
+color: gainsboro;
+`;
+
+export const CastText = styled.p`
+color: gainsboro;
+`;
+
+export const CastTextChar = styled.span`
+color: gainsboro;
+`;

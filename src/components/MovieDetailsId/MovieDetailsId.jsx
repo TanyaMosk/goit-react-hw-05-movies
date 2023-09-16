@@ -1,4 +1,4 @@
-import { Link, Outlet, useLocation} from "react-router-dom";
+import { Outlet, useLocation} from "react-router-dom";
 import { useRef, Suspense } from "react";
 import { takeYear } from "helpers/dateFormat";
 import { fixedNumber } from "helpers/fixedNumber";
@@ -9,49 +9,62 @@ import {
   MovieDetailsImage,
   CastReviewsList, 
   MovieDetailsGenres,
-  SuspenseWrapper
+  SuspenseWrapper,
+  MovieTitle,
+  MovieText,
+  MovieDesc,
+  NavLinkStyled,
+  WrapperImage,
+  Overlay,
+  WrapperHomePage
 } from "./MovieDetailsId.styled";
 
 const MovieDetailsId = ({ movie }) => {
   const location = useLocation();
-  const backLinkLocationRef = useRef(location.state?.from ?? "/movie");  
-
-  const { title, poster_path, release_date, vote_average, overview, genres } = movie;
+  const backLinkLocationRef = useRef(location.state?.from ?? "/movie");    
+  
+  const { title, poster_path, release_date, vote_average, overview, genres, tagline, homepage } = movie;
+  console.log(movie)
   return (
     <MovieDetailsSection>
       <div>
-        {backLinkLocationRef.current !== '/movie' ? <Link to={backLinkLocationRef.current}> ←Go back</Link> : <Link to={'/'}>←Go back</Link>}
+        {backLinkLocationRef.current !== '/movie' ? <NavLinkStyled to={backLinkLocationRef.current}> ←Go back</NavLinkStyled> : <NavLinkStyled to={'/'}>←Go back</NavLinkStyled>}
       </div>
         
         <>
           <MovieDetailsWrapper>
-            <div>
+            <WrapperImage>
               <MovieDetailsImage src={poster_path ? `https://image.tmdb.org/t/p/w342/${poster_path}` : 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'} alt={title} />
-            </div>
+            {tagline === "" ? null : <Overlay>{ tagline }</Overlay> }
+          </WrapperImage>
             <div>
-              {release_date ? <h2>{title}  ({takeYear(release_date)})</h2>
-                : <h2>{title}</h2>}
-              {vote_average ? <p>User Score: {fixedNumber(vote_average)} %</p> : <p>User Score: {vote_average}</p>}
-              <h3>Overview</h3>
-              <span>{overview}</span> 
-              <h3>Genres</h3>
+              {release_date ? <MovieTitle>{title}  ({takeYear(release_date)})</MovieTitle>
+                : <MovieTitle>{title}</MovieTitle>}
+              {vote_average ? <MovieDesc>User Score: {fixedNumber(vote_average)} %</MovieDesc> : <MovieDesc>User Score: {vote_average}</MovieDesc>}
+              <MovieText>Overview</MovieText>
+              <MovieDesc>{overview}</MovieDesc> 
+              <MovieText>Genres</MovieText>
               {genres && genres.map(({ id, name }) => (
                 <MovieDetailsGenres key={id}> {name}</MovieDetailsGenres>))}
-            </div>
+            {homepage === "" ? null : <WrapperHomePage>
+              <MovieText>Homepage:</MovieText>
+              <a href={homepage}>{homepage}</a>
+            </WrapperHomePage> }         
+          </div>          
           </MovieDetailsWrapper>
                 
           <CastReviewsWrapper>
-            <h2>Additional Information</h2>
+            <MovieTitle>Additional Information</MovieTitle>
             <CastReviewsList>
               <li>
-                <Link to="cast">
+                <NavLinkStyled to="cast">
                   Cast
-                </Link>
+                </NavLinkStyled>
               </li>
               <li>
-                <Link to="reviews">
+                <NavLinkStyled to="reviews">
                   Reviews
-                </Link>
+                </NavLinkStyled>
               </li>
             </CastReviewsList>
           </CastReviewsWrapper>
