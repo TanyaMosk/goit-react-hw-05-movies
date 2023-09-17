@@ -16,7 +16,8 @@ import {
   NavLinkStyled,
   WrapperImage,
   Overlay,
-  WrapperHomePage
+  WrapperHomePage,
+  MovieTextLink
 } from "./MovieDetailsId.styled";
 
 const MovieDetailsId = ({ movie }) => {
@@ -48,7 +49,7 @@ const MovieDetailsId = ({ movie }) => {
                 <MovieDetailsGenres key={id}> {name}</MovieDetailsGenres>))}
             {homepage === "" ? null : <WrapperHomePage>
               <MovieText>Homepage:</MovieText>
-              <a href={homepage}>{homepage}</a>
+              <MovieTextLink href={homepage}>{homepage}</MovieTextLink>
             </WrapperHomePage> }         
           </div>          
           </MovieDetailsWrapper>

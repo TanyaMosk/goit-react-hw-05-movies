@@ -17,6 +17,7 @@ export const MovieDetailsImage = styled.img`
  display: block;
   /* width: 100%; */
   height: auto;
+  border-radius: 5px;
 `;
 
 export const MovieDetailsGenres = styled.span`
@@ -36,13 +37,10 @@ gap: 8px;
 
 export const SuspenseWrapper = styled.div`
 margin: 50px;
-`;
-
-export const MovieTitle = styled.h2`
 color: gainsboro;
 `;
 
-export const MovieText = styled.h3`
+export const MovieTitle = styled.h2`
 color: gainsboro;
 `;
 
@@ -62,11 +60,11 @@ text-decoration: none;
 
 export const WrapperImage = styled.div`
   position: relative;
-  width: 50%;
+  /* width: 50%; */
 `;
 
 export const Overlay = styled.div`
-position: absolute;
+  position: absolute;
   bottom: 0;
   background: rgb(0, 0, 0);
   background: rgba(0, 0, 0, 0.5); /* Black see-through */
@@ -87,5 +85,18 @@ position: absolute;
 export const WrapperHomePage = styled.div`
 display: flex;
 align-items: center;
-gap: 20px;
+gap: 10px;
+`;
+
+export const MovieText = styled.h3`
+color: gainsboro;
+`;
+
+export const MovieTextLink = styled.a`
+color: gainsboro;
+text-decoration: none;
+
+&:hover{
+  color: orange;
+}
 `;
