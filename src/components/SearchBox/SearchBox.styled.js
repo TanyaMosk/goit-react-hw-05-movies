@@ -7,7 +7,7 @@ text-align: center;
 `;
 
 export const SearchBoxButton = styled.button`
-padding: 10px 10px;
+padding: 10px;
 background: linear-gradient(to top, #09203f 0%, #537895 100%);
 color: gainsboro;
 border-radius: 5px;

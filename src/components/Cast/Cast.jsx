@@ -25,8 +25,7 @@ export default function Cast () {
           setNoResults(true);           
         };     
         
-        setCasts(response.cast);  
-        
+        setCasts(response.cast);          
        
       } catch (error) {
         console.log(error);

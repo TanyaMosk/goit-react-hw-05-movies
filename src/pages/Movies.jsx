@@ -6,6 +6,8 @@ import SearchMovies from "components/SearchMovies";
 import Pagination from "components/Pagination";
 import { fetchSearchMovieByName } from "services/api";
 import 'react-toastify/dist/ReactToastify.css';
+import LoadMore from "components/LoadMore";
+
 
 const Movies = () => {       
     const [searchMovie, setSearchMovie] = useState([]);     
@@ -15,6 +17,7 @@ const Movies = () => {
     // const query = searchParams.get("query") ?? "";  
     const page = searchParams.get("page") ?? "";     
     const [query, setQuery] = useState(searchParams.get("query") ?? '');
+    const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         if (query === '') return;        
@@ -24,17 +27,22 @@ const Movies = () => {
             try {         
                 const queryId = query.slice(query.indexOf('/') + 1);
                 
-                const response = await fetchSearchMovieByName(queryId, page);
-                setSearchMovie(response.results);                
+                const response = await fetchSearchMovieByName(queryId, page);  
+                if (currentPage === 1) {
+                    setSearchMovie(response.results);
+                } else {
+
+                    setSearchMovie(prevState => [...prevState, ...response.results]);
+                }                                  
                 setPages(response.total_pages);                   
-                setActivePage(Number(page) || 1);                
+                setActivePage(Number(page) || 1);                  
                 
             } catch (error) {                
                 toast.error("Oops, something went wrong 🥺. Please try reloading the page!");
             }
         }
         getMovie()
-    }, [query, page]);      
+    }, [query, page, currentPage]);      
  
     const handleSubmit = evt => {
         evt.preventDefault();
@@ -51,19 +59,31 @@ const Movies = () => {
             setSearchParams({ query: queryMovie, page: 1 });
             setQuery(newQuery);            
             setSearchMovie([]); 
+            setCurrentPage(1);
             evt.target.reset();            
         };
     };        
 
     const handlePageChange = (selectedPage) => {         
-        setSearchParams({ query, page: selectedPage.selected + 1 });                          
+        setSearchParams({ query, page: selectedPage.selected + 1 });    
+        setCurrentPage(1);
     };
+
+    const handleLoadMore = () => {       
+    const nextPage = Number(page) + 1;
+        setSearchParams({ query, page: nextPage });
+        setCurrentPage(nextPage);        
+    };  
    
     return (
         <main>
             <SearchBox onSubmit={handleSubmit} />           
             <SearchMovies movies={searchMovie} /> 
-            {pages > 1 && <Pagination pages={pages} pageChange={handlePageChange} activePage={activePage} />}   
+            {pages > 1 &&
+                <>
+                <LoadMore loadMore={handleLoadMore}/>
+                <Pagination pages={pages} pageChange={handlePageChange} activePage={activePage} />
+                </>}               
             <ToastContainer
             autoClose={4000}
             position="top-right"
@@ -80,5 +100,5 @@ const Movies = () => {
     )
 }
 
-export default Movies
+export default Movies;
 

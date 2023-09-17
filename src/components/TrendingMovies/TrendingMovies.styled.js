@@ -2,20 +2,20 @@ import { styled } from 'styled-components';
 import { NavLink } from "react-router-dom";
 
 export const WrapperList = styled.div`
-padding: 20px 40px;
+padding: 20px;
 `;
 
 export const List = styled.ul`
 display: flex;
-/* flex-direction: column; */
+justify-content: center;
 flex-wrap: wrap;
-gap: 20px;
+gap: 15px;
 list-style: none;
 text-align: center;
 `;
 
 export const ListItem = styled.li`
-width: 260px;
+width: 225px;
 box-shadow: 0 10px 20px 5px #808080 inset;
 border-radius: 10px;
 transition: box-shadow 500ms linear, transform 500ms linear;
@@ -35,7 +35,8 @@ color: white;
 
 export const Image = styled.img`
 border-radius: 10px;
-width: 260px;
+width: 225px;
+object-fit: cover;
 height: 340px;
 `;
 

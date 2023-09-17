@@ -2,19 +2,21 @@ import { styled } from 'styled-components';
 import { NavLink } from "react-router-dom";
 
 export const SearchMoviesWrapper = styled.div`
-padding: 10px 40px;
+padding: 20px ;
+margin: auto;
 `;
 
 export const SearchMoviesList = styled.ul`
 display: flex;
+justify-content: center;
 flex-wrap: wrap;
-gap: 20px;
+gap: 15px;
 list-style: none;
 text-align: center;
 `;
 
 export const SearchMoviesItem = styled.li`
-width: 260px;
+width: 225px;
 box-shadow: 0 10px 20px 5px #808080 inset;
 border-radius: 10px;
 transition: box-shadow 500ms linear, transform 500ms linear;
@@ -27,7 +29,7 @@ transition: box-shadow 500ms linear, transform 500ms linear;
 
 export const SearchMoviesImage = styled.img`
 border-radius: 10px;
-width: 260px;
+width: 225px;
 height: 340px;
 object-fit: cover;
 `;

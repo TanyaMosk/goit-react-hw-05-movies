@@ -5,7 +5,7 @@ export const StyledReactPaginate = styled(ReactPaginate)`
    display: flex;
    justify-content: center;
    list-style: none;
-   margin: 40px 0;
+   margin: 30px 0;
   
   ul {    
    display: flex;
